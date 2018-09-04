@@ -42,23 +42,6 @@ envs["AUTO_DEPLOY_TO_PROD"] = binding.variables["AUTO_DEPLOY_TO_PROD"] ?: false
 envs["API_COMPATIBILITY_STEP_REQUIRED"] = binding.variables["API_COMPATIBILITY_STEP_REQUIRED"] ?: true
 envs["DB_ROLLBACK_STEP_REQUIRED"] = binding.variables["DB_ROLLBACK_STEP_REQUIRED"] ?: true
 envs["DEPLOY_TO_STAGE_STEP_REQUIRED"] = binding.variables["DEPLOY_TO_STAGE_STEP_REQUIRED"] ?: true
-// remove::start[CF]
-envs['PAAS_TEST_CREDENTIAL_ID'] = binding.variables["PAAS_TEST_CREDENTIAL_ID"] ?: ""
-envs['PAAS_STAGE_CREDENTIAL_ID'] = binding.variables["PAAS_STAGE_CREDENTIAL_ID"] ?: ""
-envs['PAAS_PROD_CREDENTIAL_ID'] = binding.variables["PAAS_PROD_CREDENTIAL_ID"] ?: ""
-envs["PAAS_TEST_API_URL"] = binding.variables["PAAS_TEST_API_URL"] ?: "api.local.pcfdev.io"
-envs["PAAS_STAGE_API_URL"] = binding.variables["PAAS_STAGE_API_URL"] ?: "api.local.pcfdev.io"
-envs["PAAS_PROD_API_URL"] = binding.variables["PAAS_PROD_API_URL"] ?: "api.local.pcfdev.io"
-envs["PAAS_TEST_ORG"] = binding.variables["PAAS_TEST_ORG"] ?: "pcfdev-org"
-envs["PAAS_TEST_SPACE_PREFIX"] = binding.variables["PAAS_TEST_SPACE_PREFIX"] ?: "sc-pipelines-test"
-envs["PAAS_STAGE_ORG"] = binding.variables["PAAS_STAGE_ORG"] ?: "pcfdev-org"
-envs["PAAS_STAGE_SPACE"] = binding.variables["PAAS_STAGE_SPACE"] ?: "sc-pipelines-stage"
-envs["PAAS_PROD_ORG"] = binding.variables["PAAS_PROD_ORG"] ?: "pcfdev-org"
-envs["PAAS_PROD_SPACE"] = binding.variables["PAAS_PROD_SPACE"] ?: "sc-pipelines-prod"
-envs["PAAS_HOSTNAME_UUID"] = binding.variables["PAAS_HOSTNAME_UUID"] ?: ""
-envs["PIPELINE_DESCRIPTOR"] = binding.variables["PIPELINE_DESCRIPTOR"] ?: ""
-// remove::end[CF]
-// remove::start[K8S]
 envs["PAAS_TEST_API_URL"] = binding.variables["PAAS_TEST_API_URL"] ?: "192.168.99.100:8443"
 envs["PAAS_STAGE_API_URL"] = binding.variables["PAAS_STAGE_API_URL"] ?: "192.168.99.100:8443"
 envs["PAAS_PROD_API_URL"] = binding.variables["PAAS_PROD_API_URL"] ?: "192.168.99.100:8443"

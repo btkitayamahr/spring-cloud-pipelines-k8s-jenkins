@@ -46,16 +46,8 @@ class ProdDeploy implements Step<FreeStyleJob> {
 				commonSteps.defaultWrappers(delegate as WrapperContext)
 				commonSteps.deliveryPipelineVersion(delegate as WrapperContext)
 				credentialsBinding {
-					// remove::start[CF]
-					if (pipelineDefaults.cfProdCredentialId()) usernamePassword(
-						EnvironmentVariables.PAAS_PROD_USERNAME_ENV_VAR,
-						EnvironmentVariables.PAAS_PROD_PASSWORD_ENV_VAR,
-						pipelineDefaults.cfProdCredentialId())
-					// remove::end[CF]
-					// remove::start[K8S]
 					if (pipelineDefaults.k8sProdTokenCredentialId()) string(EnvironmentVariables.TOKEN_ENV_VAR,
 						pipelineDefaults.k8sProdTokenCredentialId())
-					// remove::end[K8S]
 				}
 			}
 			scm {

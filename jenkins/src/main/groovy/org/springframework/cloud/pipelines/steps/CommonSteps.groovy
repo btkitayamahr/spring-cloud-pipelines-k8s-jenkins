@@ -78,19 +78,11 @@ class CommonSteps {
 
 	void deployPublishers(PublisherContext publisherContext) {
 		publisherContext.with {
-			// remove::start[K8S]
 			archiveArtifacts {
 				pattern("**/build/**/k8s/*.yml")
 				pattern("**/target/**/k8s/*.yml")
 				allowEmpty()
 			}
-			// remove::end[K8S]
-			// remove::start[CF]
-			archiveArtifacts {
-				pattern("manifest.yml")
-				allowEmpty()
-			}
-			// remove::end[CF]
 		}
 	}
 

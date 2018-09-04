@@ -51,28 +51,6 @@ pipeline {
 						}
 					}
 
-					// remove::start[CF]
-					if (env.PAAS_TEST_CREDENTIAL_ID) {
-						withCredentials([usernamePassword(credentialsId: env.PAAS_TEST_CREDENTIAL_ID, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-							env.PAAS_TEST_USERNAME = USER
-							env.PAAS_TEST_PASSWORD = PASS
-						}
-					}
-
-					if (env.PAAS_STAGE_CREDENTIAL_ID) {
-						withCredentials([usernamePassword(credentialsId: env.PAAS_STAGE_CREDENTIAL_ID, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-							env.PAAS_STAGE_USERNAME = USER
-							env.PAAS_STAGE_PASSWORD = PASS
-						}
-					}
-
-					if (env.PAAS_PROD_CREDENTIAL_ID) {
-						withCredentials([usernamePassword(credentialsId: env.PAAS_PROD_CREDENTIAL_ID, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-							env.PAAS_PROD_USERNAME = USER
-							env.PAAS_PROD_PASSWORD = PASS
-						}
-					}
-					// remove::end[CF]
 
 					if (env.GIT_CREDENTIAL_ID) {
 						withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIAL_ID, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
@@ -81,7 +59,6 @@ pipeline {
 						}
 					}
 
-					// remove::start[K8S]
 					if (env.DOCKER_REGISTRY_CREDENTIAL_ID) {
 						withCredentials([usernamePassword(credentialsId: env.DOCKER_REGISTRY_CREDENTIAL_ID, passwordVariable: 'PASS', usernameVariable: 'USER')]) {
 							env.DOCKER_USERNAME = USER
@@ -101,7 +78,6 @@ pipeline {
 							env.MYSQL_ROOT_PASSWORD = PASS
 						}
 					}
-					// remove::end[K8S]
 
 					env.DEPLOY_TO_PROD = input message: '', parameters: [
 						choice(

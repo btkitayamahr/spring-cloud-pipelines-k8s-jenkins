@@ -31,19 +31,6 @@ class PipelineDefaults {
 		setIfPresent(envs, variables, EnvironmentVariables.REPO_WITH_BINARIES_FOR_UPLOAD_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.REPO_WITH_BINARIES_CREDENTIAL_ID_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.PIPELINE_DESCRIPTOR_ENV_VAR)
-		// remove::start[CF]
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_TEST_API_URL_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_STAGE_API_URL_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_PROD_API_URL_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_TEST_ORG_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_TEST_SPACE_PREFIX_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_STAGE_ORG_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_STAGE_SPACE_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_PROD_ORG_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_PROD_SPACE_ENV_VAR)
-		setIfPresent(envs, variables, EnvironmentVariables.PAAS_HOSTNAME_UUID_ENV_VAR)
-		// remove::end[CF]
-		// remove::start[K8S]
 		setIfPresent(envs, variables, EnvironmentVariables.DOCKER_REGISTRY_URL_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.DOCKER_REGISTRY_ORGANIZATION_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.DOCKER_REGISTRY_CREDENTIAL_ID_ENV_VAR)
@@ -77,7 +64,6 @@ class PipelineDefaults {
 		setIfPresent(envs, variables, EnvironmentVariables.PAAS_STAGE_NAMESPACE_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.PAAS_PROD_NAMESPACE_ENV_VAR)
 		setIfPresent(envs, variables, EnvironmentVariables.KUBERNETES_MINIKUBE_ENV_VAR)
-		// remove::end[K8S]
 		println "Will analyze the following variables passed to the seed job \n\n${variables}"
 		println "Will set the following env vars to the generated jobs \n\n${envs}"
 		return envs
@@ -192,64 +178,6 @@ class PipelineDefaults {
 
 	String jdkVersion() { return prop(EnvironmentVariables.JDK_VERSION_ENV_VAR, "jdk8") }
 
-// remove::start[CF]
-	String cfTestCredentialId() {
-		return prop(EnvironmentVariables.PAAS_TEST_CREDENTIAL_ID_ENV_VAR, "")
-	}
-
-	String cfTestOrg() {
-		return prop(EnvironmentVariables.PAAS_TEST_ORG_ENV_VAR, "")
-	}
-
-	String cfTestSpacePrefix() {
-		return prop(EnvironmentVariables.PAAS_TEST_SPACE_PREFIX_ENV_VAR, "")
-	}
-
-	String cfTestPassword() {
-		return prop(EnvironmentVariables.PAAS_TEST_PASSWORD_ENV_VAR, "")
-	}
-
-	String cfStageUsername() {
-		return prop(EnvironmentVariables.PAAS_STAGE_USERNAME_ENV_VAR, "")
-	}
-
-	String cfStagePassword() {
-		return prop(EnvironmentVariables.PAAS_STAGE_PASSWORD_ENV_VAR, "")
-	}
-
-	String cfStageOrg() {
-		return prop(EnvironmentVariables.PAAS_STAGE_ORG_ENV_VAR, "")
-	}
-
-	String cfStageSpace() {
-		return prop(EnvironmentVariables.PAAS_STAGE_SPACE_ENV_VAR, "")
-	}
-
-	String cfStageCredentialId() {
-		return prop(EnvironmentVariables.PAAS_STAGE_CREDENTIAL_ID_ENV_VAR, "")
-	}
-
-	String cfProdCredentialId() {
-		return prop(EnvironmentVariables.PAAS_PROD_CREDENTIAL_ID_ENV_VAR, "")
-	}
-
-	String cfProdPassword() {
-		return prop(EnvironmentVariables.PAAS_PROD_PASSWORD_ENV_VAR, "")
-	}
-
-	String cfProdUsername() {
-		return prop(EnvironmentVariables.PAAS_PROD_USERNAME_ENV_VAR, "")
-	}
-
-	String cfProdOrg() {
-		return prop(EnvironmentVariables.PAAS_PROD_ORG_ENV_VAR, "")
-	}
-
-	String cfProdSpace() {
-		return prop(EnvironmentVariables.PAAS_PROD_SPACE_ENV_VAR, "")
-	}
-// remove::end[CF]
-// remove::start[K8S]
 	String k8sTestTokenCredentialId() {
 		return prop(EnvironmentVariables.PAAS_TEST_CLIENT_TOKEN_ID_ENV_VAR, "")
 	}
@@ -261,7 +189,6 @@ class PipelineDefaults {
 	String k8sProdTokenCredentialId() {
 		return prop(EnvironmentVariables.PAAS_PROD_CLIENT_TOKEN_ID_ENV_VAR, "")
 	}
-// remove::end[K8S]
 	String gitEmail() { return prop(EnvironmentVariables.GIT_EMAIL_ENV_VAR, "pivo@tal.com") }
 
 	String gitName() { return prop(EnvironmentVariables.GIT_NAME_ENV_VAR, "Pivo Tal") }
@@ -327,7 +254,6 @@ class PipelineDefaults {
 
 	RepoType repoType() { return RepoType.from(toolsRepo()) }
 // TODO: K8S - consider parametrization
-// remove::start[K8S]
 	String mySqlRootCredential() {
 		return prop(EnvironmentVariables.MYSQL_ROOT_CREDENTIAL_ID_ENV_VAR, "")
 	}
@@ -335,35 +261,5 @@ class PipelineDefaults {
 	String mySqlCredential() {
 		return prop(EnvironmentVariables.MYSQL_CREDENTIAL_ID_ENV_VAR, "")
 	}
-// remove::end[K8S]
 
-// remove::start[SPINNAKER]
-	String spinnakerTestDeploymentAccount() {
-		return prop(EnvironmentVariables.SPINNAKER_TEST_DEPLOYMENT_ACCOUNT_ENV_VAR, "")
-	}
-
-	String spinnakerStageDeploymentAccount() {
-		return prop(EnvironmentVariables.SPINNAKER_STAGE_DEPLOYMENT_ACCOUNT_ENV_VAR, "")
-	}
-
-	String spinnakerProdDeploymentAccount() {
-		return prop(EnvironmentVariables.SPINNAKER_PROD_DEPLOYMENT_ACCOUNT_ENV_VAR, "")
-	}
-
-	String spinnakerJenkinsMaster() {
-		return prop(EnvironmentVariables.SPINNAKER_JENKINS_MASTER_ENV_VAR, "")
-	}
-
-	String spinnakerTestHostname() {
-		return prop(EnvironmentVariables.SPINNAKER_TEST_HOSTNAME_ENV_VAR, "")
-	}
-
-	String spinnakerStageHostname() {
-		return prop(EnvironmentVariables.SPINNAKER_STAGE_HOSTNAME_ENV_VAR, "")
-	}
-
-	String spinnakerProdHostname() {
-		return prop(EnvironmentVariables.SPINNAKER_PROD_HOSTNAME_ENV_VAR, "")
-	}
-// remove::end[SPINNAKER]
 }

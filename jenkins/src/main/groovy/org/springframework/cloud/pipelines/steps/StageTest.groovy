@@ -51,17 +51,9 @@ class StageTest implements Step<FreeStyleJob> {
 				commonSteps.defaultWrappers(delegate as WrapperContext)
 				commonSteps.deliveryPipelineVersion(delegate as WrapperContext)
 				credentialsBinding {
-					// remove::start[CF]
-					if (pipelineDefaults.cfStageCredentialId()) usernamePassword(
-						EnvironmentVariables.PAAS_STAGE_USERNAME_ENV_VAR,
-						EnvironmentVariables.PAAS_STAGE_PASSWORD_ENV_VAR,
-						pipelineDefaults.cfStageCredentialId())
-					// remove::end[CF]
-					// remove::start[K8S]
 					if (pipelineDefaults.k8sStageTokenCredentialId()) string(
 						EnvironmentVariables.TOKEN_ENV_VAR,
 						pipelineDefaults.k8sStageTokenCredentialId())
-					// remove::end[K8S]
 				}
 			}
 			scm {

@@ -51,17 +51,9 @@ class TestRollbackTest implements Step<FreeStyleJob> {
 				commonSteps.defaultWrappers(delegate as WrapperContext)
 				commonSteps.deliveryPipelineVersion(delegate as WrapperContext)
 				credentialsBinding {
-					// remove::start[CF]
-					if (pipelineDefaults.cfTestCredentialId()) usernamePassword(
-						EnvironmentVariables.PAAS_TEST_USERNAME_ENV_VAR,
-						EnvironmentVariables.PAAS_TEST_PASSWORD_ENV_VAR,
-						pipelineDefaults.cfTestCredentialId())
-					// remove::end[CF]
-					// remove::start[K8S]
 					if (pipelineDefaults.k8sTestTokenCredentialId()) string(
 						EnvironmentVariables.TOKEN_ENV_VAR,
 						pipelineDefaults.k8sTestTokenCredentialId())
-					// remove::end[K8S]
 				}
 			}
 			scm {

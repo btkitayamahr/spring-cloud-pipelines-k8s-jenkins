@@ -61,16 +61,8 @@ class TestPrepare implements Step<FreeStyleJob> {
 					if (!pipelineDefaults.gitUseSshKey()) usernamePassword(EnvironmentVariables.GIT_USERNAME_ENV_VAR,
 						EnvironmentVariables.GIT_PASSWORD_ENV_VAR,
 						pipelineDefaults.gitCredentials())
-					// remove::start[CF]
-					if (pipelineDefaults.cfTestCredentialId()) usernamePassword(
-						EnvironmentVariables.PAAS_TEST_USERNAME_ENV_VAR,
-						EnvironmentVariables.PAAS_TEST_PASSWORD_ENV_VAR,
-						pipelineDefaults.cfTestCredentialId())
-					// remove::end[CF]
-					// remove::start[K8S]
 					if (pipelineDefaults.k8sTestTokenCredentialId()) string(EnvironmentVariables.TOKEN_ENV_VAR,
 						pipelineDefaults.k8sTestTokenCredentialId())
-					// remove::end[K8S]
 				}
 			}
 			scm {

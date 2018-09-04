@@ -68,12 +68,6 @@ setCredsIfMissing(repoWithBinariesCredId, "Repo with binaries",
 	System.getenv('M2_SETTINGS_REPO_USERNAME') ?: "admin",
 	System.getenv('M2_SETTINGS_REPO_PASSWORD') ?: "password")
 
-// remove::start[CF]
-println "Creating the credentials for CF"
-['cf-test', 'cf-stage', 'cf-prod'].each { String id ->
-	setCredsIfMissing(id, "CF credential [$id]", "user", "pass")
-}
-// remove::end[CF]
 
 println "Importing GPG Keys"
 def privateKey = new File('/usr/share/jenkins/private.key')
@@ -113,7 +107,6 @@ if (gitSshKey) {
 }
 setCredsIfMissing("git", "GIT credential", gitUser, gitPass)
 
-// remove::start[K8S]
 def certificateAuthority = new File('/usr/share/jenkins/cert/ca.crt')
 def clientCertificate = new File('/usr/share/jenkins/cert/apiserver.crt')
 def clientKey = new File('/usr/share/jenkins/cert/apiserver.key')
@@ -167,7 +160,6 @@ println "Creating the seed job"
 modifiedSeedJob = modifiedSeedJob
 	.replace('scpipelines', "${System.getenv('DOCKER_REGISTRY_ORGANIZATION') ?: "scpipelines"}")
 	.replace("change@me.com", dockerRegistryEmail)
-// remove::end[K8S]
 
 
 println "Adding jdk"
