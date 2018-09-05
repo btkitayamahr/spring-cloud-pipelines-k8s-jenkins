@@ -54,4 +54,4 @@ cp ~/.minikube/apiserver.key seed/k8s/ || echo "Failed to copy Kubernetes client
 
 docker-compose build --no-cache
 #docker-compose build
-docker-compose up -d
+sudo docker-compose up -d

@@ -1,6 +1,7 @@
 version: "2"
 services:
   jenkins:
+    container_name: jenkins
     build:
       context: .
       args:
@@ -22,11 +23,4 @@ services:
       - ~/jenkins_home:/var/jenkins_home
       - ~/jenkins_root:/root/
       - /var/run/docker.sock:/var/run/docker.sock
-    links:
-      - artifactory
-  artifactory:
-    build:
-      context: .
-      dockerfile: Dockerfile-artifactory
-    ports:
-      - "8081:8081"
+
