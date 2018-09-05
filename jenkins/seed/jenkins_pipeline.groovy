@@ -740,7 +740,15 @@ factory.job('jenkins-pipeline-ansible-declarative-seed') {
 
 factory.job('msa-pipeline-seed') {
 	scm {
-		git('${TOOLS_REPOSITORY}', '${TOOLS_BRANCH}')
+		git {
+			remote('${TOOLS_REPOSITORY}')
+			branch('${TOOLS_BRANCH}')
+			extensions {
+				submoduleOptions {
+					recursive()
+				}
+			}
+		}
 	}
 	wrappers {
 		parameters {
